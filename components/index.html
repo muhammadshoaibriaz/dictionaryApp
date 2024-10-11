@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        min-height: 50vh;
+      }
+      .container .content {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        min-height: 50vh;
+      }
+      .container button {
+        width: 140px;
+        height: 45px;
+        border-radius: 6px;
+        border: 2px solid #f6cddb;
+        background: #fe3377;
+        font-size: 17px;
+        color: #fff;
+      }
+      #button {
+        width: 160px;
+        height: 45px;
+        border-radius: 6px;
+        border: 2px solid #f7beb4;
+        background: #fe8e33;
+        font-size: 17px;
+        color: #fff;
+        margin-left: 44%;
+        color: #1d7aec;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <button onclick="fetchData()">fetchData</button>
+      </div>
+    </div>
+    <script>
+      const apiKey = "918e2440-9f57-43b4-9b8b-ea41f5c9d80f";
+      const fetchData = () => {
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/hello`)
+          .then((res) => res.json())
+          .then((data) => {
+            let word = data[0].word;
+            let phonetic = data[0].phonetic;
+            let phonetics = data[0].phonetics;
+            let origin = data[0].origin;
+            let meanings = data[0].meanings;
+            // let partOfSpeech = data[0].meanings;
+
+            for (let i = 0; i < meanings.length; i++) {
+              console.log(meanings[i]);
+            }
+            meanings[0].definitions.map((item) => console.log(item));
+          });
+      };
+    </script>
+  </body>
+</html>
